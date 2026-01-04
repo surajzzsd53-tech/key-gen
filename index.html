@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEX CORE KEY 😈</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #000;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Rainbow Border Animation */
+        @keyframes rainbowBorder {
+            0% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+            25% { border-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
+            50% { border-color: #00ffff; box-shadow: 0 0 15px #00ffff; }
+            75% { border-color: #ff00ff; box-shadow: 0 0 15px #ff00ff; }
+            100% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+        }
+
+        .main-card {
+            width: 95%;
+            max-width: 400px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 4px solid #ff0000;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            animation: rainbowBorder 4s linear infinite;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowText 3s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes rainbowText { to { background-position: 200%; } }
+
+        .terminal {
+            background: #050505;
+            border: 1px solid #222;
+            height: 140px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            text-align: left;
+            overflow-y: auto;
+            color: #00ff00;
+            border-radius: 8px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-gen { border-color: #00ff00; color: #00ff00; }
+        .btn-gen:hover { background: #00ff00; color: #000; }
+
+        .support-box { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-tg { border-color: #0088cc; color: #0088cc; font-size: 12px; }
+        .btn-yt { border-color: #ff0000; color: #ff0000; font-size: 12px; }
+
+        #result-area { display: none; margin-top: 20px; }
+        .key-display {
+            background: #111;
+            padding: 15px;
+            border: 2px dashed #ff00ff;
+            font-weight: bold;
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 15px;
+            word-break: break-all;
+        }
+
+        #procBar { display: none; color: #ffff00; font-weight: bold; margin: 15px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        <h2>ANAND 😈 KEY GEN</h2>
+        
+        <div class="terminal" id="term">
+            [INFO] System Ready...<br>
+            [USER] Waiting for action...
+        </div>
+
+        <div id="action-area">
+            <button class="btn btn-gen" onclick="startFlow()">Generate Access Key</button>
+        </div>
+
+        <div id="procBar">PROCESSING... <span id="timer">30</span>s</div>
+
+        <div id="result-area">
+            <div class="key-display" id="keyOutput">LOADING...</div>
+            <button class="btn" style="border-color:#ffff00; color:#ffff00;" onclick="copyKey()">Copy Key</button>
+        </div>
+
+        <div class="support-box">
+            <button class="btn btn-tg" onclick="window.open('https://t.me/+4N0Gp0aCxIs3MjZl')">Telegram</button>
+            <button class="btn btn-yt" onclick="window.open('https://youtube.com/@akbhexcoreofc1?si=P__NkqBqwX5UpO0e')">YouTube</button>
+        </div>
+    </div>
+
+    <script>
+        // --- SETTINGS ---
+        const myEarnLink = "PASTE_YOUR_EARNLINK_HERE"; // <--- Yahan Apna Earnlink Daalein
+
+        // YE RAHI AAPKI 10 FIXED KEYS (SIRF YEHI AAYENGI)
+        const keyList = [
+            "vs18ff-168-om0a4", 
+            "vs18ff-168-uY0kH", 
+            "vs18ff-168-4EX9d",
+            "vs18ff-168-nwKQ0", 
+            "vs18ff-168-nyglY", 
+            "vs18ff-168-nlqPI",
+            "vs18ff-168-qKGSM", 
+            "vs18ff-168-7fScQ", 
+            "vs18ff-168-ocqfx",
+            "vs18ff-168-16w8W"
+        ];
+
+        window.onload = function() {
+            // Check if user returned from earnlink
+            if(window.location.hash === "#verify-complete") {
+                showFinalKey();
+            }
+        };
+
+        function addLog(msg) {
+            const term = document.getElementById('term');
+            term.innerHTML += `<br>> ${msg}`;
+            term.scrollTop = term.scrollHeight;
+        }
+
+        function startFlow() {
+            document.getElementById('action-area').style.display = 'none';
+            document.getElementById('procBar').style.display = 'block';
+            
+            let timeLeft = 30;
+            const coding = setInterval(() => {
+                const logs = ["Bypassing security...", "Injecting script...", "fetching database...", "Decrypting hash...", "Establishing secure tunnel..."];
+                addLog(logs[Math.floor(Math.random()*logs.length)]);
+            }, 800);
+
+            const timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if(timeLeft <= 0) {
+                    clearInterval(timer);
+                    clearInterval(coding);
+                    // Redirecting to Earnlink
+                    window.location.href = myEarnLink;
+                }
+            }, 1000);
+        }
+
+        function showFinalKey() {
+            document.getElementById('action-area').style.display = 'none';
+            document.getElementById('procBar').style.display = 'none';
+            document.getElementById('result-area').style.display = 'block';
+            
+            // Logic: Pick only from your list
+            const randomIndex = Math.floor(Math.random() * keyList.length);
+            const selectedKey = keyList[randomIndex];
+            
+            document.getElementById('keyOutput').innerText = selectedKey;
+            addLog("ACCESS GRANTED!");
+            addLog("Key Decrypted: " + selectedKey);
+        }
+
+        function copyKey() {
+            const text = document.getElementById('keyOutput').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Key Copied: " + text);
+            });
+        }
+    </script>
+</body>
+</html>
