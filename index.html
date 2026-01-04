@@ -3,38 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEX CORE KEY 😈</title>
+    <title>HEX CORE V.I.P | ANAND 😈</title>
     <style>
-        * { box-sizing: border-box; }
+        :root {
+            --primary: #ff0000;
+            --bg: #050505;
+        }
+
+        * { box-sizing: border-box; cursor: crosshair; }
+        
         body {
-            background-color: #000;
+            background-color: var(--bg);
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
             overflow-x: hidden;
-            font-family: 'Segoe UI', sans-serif;
         }
 
-        /* Rainbow Border Animation */
-        @keyframes rainbowBorder {
-            0% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
-            25% { border-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
-            50% { border-color: #00ffff; box-shadow: 0 0 15px #00ffff; }
-            75% { border-color: #ff00ff; box-shadow: 0 0 15px #ff00ff; }
-            100% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+        /* --- Rainbow Border Animation --- */
+        @keyframes rainbowRotate {
+            0% { border-color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); }
+            20% { border-color: #ff8800; box-shadow: 0 0 20px rgba(255, 136, 0, 0.6); }
+            40% { border-color: #ffff00; box-shadow: 0 0 20px rgba(255, 255, 0, 0.6); }
+            60% { border-color: #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.6); }
+            80% { border-color: #0088ff; box-shadow: 0 0 20px rgba(0, 136, 255, 0.6); }
+            100% { border-color: #ff00ff; box-shadow: 0 0 20px rgba(255, 0, 255, 0.6); }
         }
 
         .main-card {
             width: 95%;
-            max-width: 400px;
+            max-width: 420px;
             background: rgba(10, 10, 10, 0.95);
+            /* Rainbow Border Applied Here */
             border: 4px solid #ff0000;
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 25px;
+            padding: 30px;
             text-align: center;
-            animation: rainbowBorder 4s linear infinite;
+            position: relative;
+            animation: rainbowRotate 5s linear infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        .owner-badge {
+            background: linear-gradient(90deg, #ff0000, #ff8800, #ff00ff, #ff0000);
+            background-size: 200%;
+            padding: 6px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            animation: moveGradient 3s linear infinite;
+            color: #fff;
+        }
+
+        @keyframes moveGradient {
+            0% { background-position: 0%; }
+            100% { background-position: 200%; }
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin: 5px 0;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        .dev-tag {
+            font-size: 12px;
+            color: #00f2ff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .terminal {
+            background: #000;
+            border: 1px solid #222;
+            height: 140px;
+            margin-bottom: 20px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            text-align: left;
+            overflow-y: auto;
+            color: #00ff41;
+            border-radius: 15px;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: 0.3s;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn-main:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 20px #fff;
+        }
+
+        /* --- Loading Bar --- */
+        #procBar { display: none; margin: 20px 0; }
+        .loading-text {
+            color: #ffff00;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0.2; } }
+
+        .result-box {
+            display: none;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px dashed #ff00ff;
+            margin-top: 20px;
+            animation: fadeIn 0.5s;
+        }
+
+        .key-text {
+            font-size: 1.3rem;
+            color: #00ff00;
+            font-weight: bold;
+            display: block;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+
+        .social-grid {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid;
+            background: transparent;
+            color: #fff;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tg-btn { border-color: #0088cc; color: #0088cc; }
+        .tg-btn:hover { background: #0088cc; color: #fff; }
+        .yt-btn { border-color: #ff0000; color: #ff0000; }
+        .yt-btn:hover { background: #ff0000; color: #fff; }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        <div class="owner-badge">OWNER: ANAND 😈</div>
+        
+        <h2>HEX CORE V2</h2>
+        <span class="dev-tag">Developed by Suraj</span>
+
+        <div class="terminal" id="term">
+            [+] System Ready...<br>
+            [+] Coded by Suraj...<br>
+            [+] Secure Channel: Active
+        </div>
+
+        <div id="action-area">
+            <button class="btn-main" onclick="startFlow()">GENERATE ACCESS KEY</button>
+        </div>
+
+        <div id="procBar">
+            <div class="loading-text">BYPASSING SECURITY... <span id="timer">30</span>s</div>
+        </div>
+
+        <div id="result-area" class="result-box">
+            <span style="font-size: 11px; color: #aaa;">DECRYPTED SUCCESS:</span>
+            <span class="key-text" id="keyOutput">...</span>
+            <button class="btn-main" style="border-color:#00ff00; color:#00ff00;" onclick="copyKey()">COPY KEY</button>
+        </div>
+
+        <div class="social-grid">
+            <button class="social-btn tg-btn" onclick="window.open('https://t.me/+4N0Gp0aCxIs3MjZl')">TELEGRAM</button>
+            <button class="social-btn yt-btn" onclick="window.open('https://youtube.com/@akbhexcoreofc1')">YOUTUBE</button>
+        </div>
+
+        <div class="footer">
+            POWERED BY ANAND & SURAJ
+        </div>
+    </div>
+
+    <script>
+        const myEarnLink = "https://gplinks.co/iCFej";
+        const keyList = [
+            "vs18ff-168-om0a4", "vs18ff-168-uY0kH", "vs18ff-168-4EX9d",
+            "vs18ff-168-nwKQ0", "vs18ff-168-nyglY", "vs18ff-168-nlqPI",
+            "vs18ff-168-qKGSM", "vs18ff-168-7fScQ", "vs18ff-168-ocqfx",
+            "vs18ff-168-16w8W"
+        ];
+
+        window.onload = function() {
+            if(window.location.hash === "#verify-complete") {
+                showFinalKey();
+            }
+        };
+
+        function addLog(msg) {
+            const term = document.getElementById('term');
+            term.innerHTML += `<br>> ${msg}`;
+            term.scrollTop = term.scrollHeight;
+        }
+
+        function startFlow() {
+            document.getElementById('action-area').style.display = 'none';
+            document.getElementById('procBar').style.display = 'block';
+            
+            let timeLeft = 30;
+            const coding = setInterval(() => {
+                const logs = [
+                    "Suraj's script injecting...", 
+                    "Anand's DB connecting...", 
+                    "Bypassing firewall...", 
+                    "Generating hash...", 
+                    "Tunneling proxy..."
+                ];
+                addLog(logs[Math.floor(Math.random()*logs.length)]);
+            }, 800);
+
+            const timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if(timeLeft <= 0) {
+                    clearInterval(timer);
+                    clearInterval(coding);
+                    window.location.href = myEarnLink;
+                }
+            }, 1000);
+        }
+
+        function showFinalKey() {
+            document.getElementById('action-area').style.display = 'none';
+            document.getElementById('procBar').style.display = 'none';
+            document.getElementById('result-area').style.display = 'block';
+            
+            const randomIndex = Math.floor(Math.random() * keyList.length);
+            const selectedKey = keyList[randomIndex];
+            
+            document.getElementById('keyOutput').innerText = selectedKey;
+            addLog("ACCESS GRANTED!");
+        }
+
+        function copyKey() {
+            const text = document.getElementById('keyOutput').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Key Copied: " + text);
+            });
+        }
+    </script>
+</body>
+</html>            animation: rainbowBorder 4s linear infinite;
         }
 
         h2 {
