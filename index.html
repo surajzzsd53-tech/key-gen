@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HEX CORE V.I.P | ANAND 😈</title>
+    <link rel="preconnect" href="https://i.ibb.co"> 
+    
     <style>
         :root {
             --primary: #00ff88; 
@@ -55,6 +57,7 @@
             z-index: 10;
         }
 
+        /* LOGO SECTION - Instant Load Fix */
         .logo-section {
             width: 90px; height: 90px;
             margin: -75px auto 15px;
@@ -64,8 +67,16 @@
             overflow: hidden;
             display: flex; align-items: center; justify-content: center;
             animation: rainbowBorder 4s linear infinite;
+            position: relative;
         }
-        .logo-section img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .logo-section img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            z-index: 2;
+            /* Yahan opacity 1 rakhi hai taaki delay na ho */
+            opacity: 1; 
+        }
 
         .owner-badge {
             background: linear-gradient(90deg, #ff0000, #00ff00, #00f7ff, #ff00ff);
@@ -101,7 +112,7 @@
         .terminal {
             background: rgba(0, 0, 0, 0.85);
             border: 1px solid rgba(0, 255, 136, 0.2);
-            height: 130px;
+            height: 110px;
             margin-bottom: 20px;
             padding: 12px;
             font-family: 'Courier New', monospace;
@@ -120,23 +131,30 @@
             cursor: pointer; transition: 0.3s; font-size: 16px;
             box-shadow: 0 5px 15px rgba(0,255,136,0.3);
         }
-        .btn-main:hover { transform: scale(1.02); box-shadow: 0 0 30px var(--primary); }
 
         .result-box {
             display: none; background: rgba(0,0,0,0.5);
             padding: 20px; border-radius: 20px;
-            border: 2px dashed var(--primary); margin-top: 20px;
+            border: 2px dashed var(--primary); margin-top: 10px;
         }
 
         .key-text {
-            font-size: 1.6rem; color: #fff;
+            font-size: 1.4rem; color: #fff;
             display: block; margin: 15px 0; padding: 15px;
             background: rgba(255,255,255,0.05); border-radius: 10px;
             text-shadow: 0 0 10px var(--primary); border: 1px solid var(--primary);
+            word-break: break-all;
+            letter-spacing: 1px;
         }
 
         .social-grid { display: flex; gap: 10px; margin-top: 20px; }
         .social-btn { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid #fff; background: transparent; color: #fff; font-size: 10px; cursor: pointer; }
+        
+        @media (max-width: 480px) {
+            .main-card { padding: 20px; width: 90%; }
+            .logo-section { width: 75px; height: 75px; margin-top: -60px; }
+            .key-text { font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
@@ -145,23 +163,22 @@
 
     <div class="main-card">
         <div class="logo-section">
-            <img src="https://i.ibb.co/7JjdJykJ/Gemini-Generated-Image-shaghcshaghcshag.png" alt="LOGO">
+            <img src="https://i.ibb.co/cKfdyBRj/IMG-20260108-002002-409.jpg" alt="LOGO" fetchpriority="high" loading="eager">
         </div>
 
-        <div class="owner-badge">OWNER: ANAND 😈</div>
-        <h2 style="margin:5px 0; letter-spacing: 1px;">HEX CORE VIP</h2>
+        <div id="ui-top">
+            <div class="owner-badge">OWNER: ANAND 😈</div>
+            <h2 style="margin:5px 0; letter-spacing: 1px;">HEX CORE VIP</h2>
+        </div>
 
-        <div class="user-info">
-            <div class="info-box">LIVE<span id="onlineCount">1,000+</span></div>
-            <div class="info-box">USER<span>10 MILLION+</span></div>
-            <div class="info-box">PING<span id="pingVal">-- ms</span></div>
+        <div class="user-info" id="stats-box">
+            <div class="info-box">LIVE<span id="onlineCount">1,248+</span></div>
+            <div class="info-box">USER<span>10M+</span></div>
+            <div class="info-box">PING<span id="pingVal">24 ms</span></div>
         </div>
 
         <div class="terminal" id="term">
-            <div id="term-content">
-                [+] System Initialized...<br>
-                [+] Ready to Generate...
-            </div>
+            <div id="term-content">> [INFO] System Online...<br>> [READY] Waiting for user...</div>
         </div>
 
         <div id="action-area">
@@ -169,16 +186,16 @@
         </div>
 
         <div id="procBar" style="display:none; margin:20px 0;">
-            <div style="color:var(--accent); font-weight:bold; font-size: 14px;">VERIFYING REQUEST: <span id="timer">30</span>s</div>
+            <div style="color:var(--accent); font-weight:bold; font-size: 14px;">REDIRECTING... <span id="timer">10</span>s</div>
             <div style="width:100%; height:10px; background:#111; border-radius:10px; margin-top:10px; overflow:hidden;">
                 <div id="pBar" style="width:0%; height:100%; background:linear-gradient(90deg, #ff00ff, #00ff88); transition:1s linear;"></div>
             </div>
         </div>
 
         <div id="result-area" class="result-box">
-            <span style="font-size:12px; color:#aaa;">VIP KEY UNLOCKED:</span>
-            <span class="key-text" id="keyOutput">...</span>
-            <button class="btn-main" onclick="copyKey()">COPY KEY</button>
+            <span style="font-size:12px; color:var(--primary); font-weight: bold;">VERIFICATION SUCCESSFUL!</span>
+            <span class="key-text" id="keyOutput">HEX_CORE_KEYS_101</span>
+            <button class="btn-main" onclick="copyKey()">COPY VIP KEY</button>
         </div>
 
         <div class="social-grid">
@@ -189,110 +206,79 @@
 
     <script>
         const myShortLink = "https://earnlinks.in/A8Zqu";
-        const keys = ["HEX-VIP-9922", "CORE-X07", "GOLD-881", "ANAND-VIP-2026"];
+        const fixKey = "HEX_CORE_KEYS_101";
 
-        // --- GITHUB PAGES LOGIC ---
         window.onload = () => {
-            // Agar link ke aakhir mein #verify-complete hai, toh direct KEY dikhao
+            // Hash check for completion
             if(window.location.hash === "#verify-complete") {
                 document.getElementById('action-area').style.display = 'none';
+                document.getElementById('term').style.display = 'none';
+                document.getElementById('stats-box').style.display = 'none';
+                document.getElementById('ui-top').style.display = 'none';
+                
+                // Show result and set fix key
                 document.getElementById('result-area').style.display = 'block';
-                document.getElementById('keyOutput').innerText = keys[Math.floor(Math.random()*keys.length)];
-                addLog("[SUCCESS] Bypass Complete!");
+                document.getElementById('keyOutput').innerText = fixKey;
             }
         };
-
-        function addLog(msg) {
-            const container = document.getElementById('term-content');
-            const line = document.createElement('div');
-            line.innerHTML = `> ${msg}`;
-            container.appendChild(line);
-            if (container.childElementCount > 10) container.removeChild(container.firstChild);
-            document.getElementById('term').scrollTop = document.getElementById('term').scrollHeight;
-        }
 
         function startFlow() {
             document.getElementById('action-area').style.display = 'none';
             document.getElementById('procBar').style.display = 'block';
-            const hackMsgs = ["Bypassing...", "Connecting...", "Generating Token...", "Redirecting to Ads..."];
-            const fastTerm = setInterval(() => addLog(hackMsgs[Math.floor(Math.random() * hackMsgs.length)]), 100);
-            
-            let time = 10; // 10 second wait before link redirect
+            let time = 10;
             const timer = setInterval(() => {
                 time--;
                 document.getElementById('timer').innerText = time;
                 document.getElementById('pBar').style.width = ((10-time)/10 * 100) + "%";
                 if(time <= 0) {
                     clearInterval(timer);
-                    clearInterval(fastTerm);
                     window.location.href = myShortLink;
                 }
             }, 1000);
         }
 
         function copyKey() {
-            navigator.clipboard.writeText(document.getElementById('keyOutput').innerText);
-            alert("KEY COPIED!");
+            const key = document.getElementById('keyOutput').innerText;
+            navigator.clipboard.writeText(key).then(() => {
+                alert("VIP KEY COPIED: " + key);
+            });
         }
 
-        // --- PARTICLES ---
+        // Optimized Particles for Mobile
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let pts = [];
-        let mouse = { x: -1000, y: -1000 };
-        window.onmousemove = (e) => { mouse.x = e.x; mouse.y = e.y; };
         window.onresize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
         window.onresize();
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.s = Math.random() * 2 + 1;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
+                this.s = Math.random() * 1.5;
+                this.vx = (Math.random() - 0.5) * 1.2;
+                this.vy = (Math.random() - 0.5) * 1.2;
                 this.hue = Math.random() * 360;
             }
             update() {
                 this.x += this.vx; this.y += this.vy;
-                this.hue += 1;
-                let dx = mouse.x - this.x; let dy = mouse.y - this.y;
-                let dist = Math.sqrt(dx*dx + dy*dy);
-                if(dist < 100) { this.x -= dx * 0.05; this.y -= dy * 0.05; }
                 if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
                 if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.s, 0, Math.PI * 2);
-                ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, 0.8)`;
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, 0.4)`;
                 ctx.fill();
             }
         }
-        for(let i=0; i<80; i++) pts.push(new Particle());
+        for(let i=0; i<40; i++) pts.push(new Particle());
         function animate() {
-            ctx.fillStyle = "rgba(3, 3, 11, 0.2)";
+            ctx.fillStyle = "rgba(3, 3, 11, 0.3)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            pts.forEach((p, i) => {
-                p.update(); p.draw();
-                for(let j=i+1; j<pts.length; j++) {
-                    let dx = p.x - pts[j].x; let dy = p.y - pts[j].y;
-                    let dist = Math.sqrt(dx*dx + dy*dy);
-                    if(dist < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `hsla(${p.hue}, 100%, 50%, ${1 - dist/100})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(p.x, p.y); ctx.lineTo(pts[j].x, pts[j].y);
-                        ctx.stroke();
-                    }
-                }
-            });
+            pts.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animate);
         }
         animate();
-        setInterval(() => { 
-            document.getElementById('onlineCount').innerText = (1000 + Math.floor(Math.random()*500)).toLocaleString() + "+";
-            document.getElementById('pingVal').innerText = 15 + Math.floor(Math.random()*30) + " ms";
-        }, 2000);
     </script>
 </body>
 </html>
