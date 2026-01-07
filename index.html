@@ -160,7 +160,7 @@
         <div class="terminal" id="term">
             <div id="term-content">
                 [+] System Initialized...<br>
-                [+] Data packets ready...
+                [+] Ready to Generate...
             </div>
         </div>
 
@@ -169,7 +169,7 @@
         </div>
 
         <div id="procBar" style="display:none; margin:20px 0;">
-            <div style="color:var(--accent); font-weight:bold; font-size: 14px;">BYPASSING SECURITY: <span id="timer">30</span>s</div>
+            <div style="color:var(--accent); font-weight:bold; font-size: 14px;">VERIFYING REQUEST: <span id="timer">30</span>s</div>
             <div style="width:100%; height:10px; background:#111; border-radius:10px; margin-top:10px; overflow:hidden;">
                 <div id="pBar" style="width:0%; height:100%; background:linear-gradient(90deg, #ff00ff, #00ff88); transition:1s linear;"></div>
             </div>
@@ -191,11 +191,14 @@
         const myShortLink = "https://earnlinks.in/A8Zqu";
         const keys = ["HEX-VIP-9922", "CORE-X07", "GOLD-881", "ANAND-VIP-2026"];
 
+        // --- GITHUB PAGES LOGIC ---
         window.onload = () => {
+            // Agar link ke aakhir mein #verify-complete hai, toh direct KEY dikhao
             if(window.location.hash === "#verify-complete") {
                 document.getElementById('action-area').style.display = 'none';
                 document.getElementById('result-area').style.display = 'block';
                 document.getElementById('keyOutput').innerText = keys[Math.floor(Math.random()*keys.length)];
+                addLog("[SUCCESS] Bypass Complete!");
             }
         };
 
@@ -211,13 +214,14 @@
         function startFlow() {
             document.getElementById('action-area').style.display = 'none';
             document.getElementById('procBar').style.display = 'block';
-            const hackMsgs = ["Injecting...", "SSL Bypass...", "Fetching DB...", "Proxy Link...", "Hashing...", "DB_Breach...", "SQL_Inject...", "Masking..."];
-            const fastTerm = setInterval(() => addLog(hackMsgs[Math.floor(Math.random() * hackMsgs.length)]), 60);
-            let time = 30;
+            const hackMsgs = ["Bypassing...", "Connecting...", "Generating Token...", "Redirecting to Ads..."];
+            const fastTerm = setInterval(() => addLog(hackMsgs[Math.floor(Math.random() * hackMsgs.length)]), 100);
+            
+            let time = 10; // 10 second wait before link redirect
             const timer = setInterval(() => {
                 time--;
                 document.getElementById('timer').innerText = time;
-                document.getElementById('pBar').style.width = ((30-time)/30 * 100) + "%";
+                document.getElementById('pBar').style.width = ((10-time)/10 * 100) + "%";
                 if(time <= 0) {
                     clearInterval(timer);
                     clearInterval(fastTerm);
@@ -231,16 +235,14 @@
             alert("KEY COPIED!");
         }
 
-        // --- ULTRA TAGDI PARTICLES ---
+        // --- PARTICLES ---
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let pts = [];
         let mouse = { x: -1000, y: -1000 };
-
         window.onmousemove = (e) => { mouse.x = e.x; mouse.y = e.y; };
         window.onresize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
         window.onresize();
-
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -266,9 +268,7 @@
                 ctx.fill();
             }
         }
-
         for(let i=0; i<80; i++) pts.push(new Particle());
-
         function animate() {
             ctx.fillStyle = "rgba(3, 3, 11, 0.2)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -289,8 +289,6 @@
             requestAnimationFrame(animate);
         }
         animate();
-
-        // Updated Dynamic Counters (Live always > 1k)
         setInterval(() => { 
             document.getElementById('onlineCount').innerText = (1000 + Math.floor(Math.random()*500)).toLocaleString() + "+";
             document.getElementById('pingVal').innerText = 15 + Math.floor(Math.random()*30) + " ms";
