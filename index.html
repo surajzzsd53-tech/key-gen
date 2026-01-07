@@ -6,14 +6,16 @@
     <title>HEX CORE V.I.P | ANAND 😈</title>
     <style>
         :root {
-            --primary: #ff0000;
-            --bg: #050505;
+            --primary: #00ff88; 
+            --secondary: #8a2be2; 
+            --bg: #03030b; 
+            --accent: #ff6b00; 
         }
 
         * { box-sizing: border-box; cursor: crosshair; }
         
         body {
-            background-color: var(--bg);
+            background: var(--bg);
             margin: 0;
             display: flex;
             justify-content: center;
@@ -21,269 +23,278 @@
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #fff;
-            overflow-x: hidden;
+            overflow: hidden;
+            padding: 20px;
         }
 
-        /* --- Rainbow Border Animation --- */
-        @keyframes rainbowRotate {
-            0% { border-color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); }
-            20% { border-color: #ff8800; box-shadow: 0 0 20px rgba(255, 136, 0, 0.6); }
-            40% { border-color: #ffff00; box-shadow: 0 0 20px rgba(255, 255, 0, 0.6); }
-            60% { border-color: #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.6); }
-            80% { border-color: #0088ff; box-shadow: 0 0 20px rgba(0, 136, 255, 0.6); }
-            100% { border-color: #ff00ff; box-shadow: 0 0 20px rgba(255, 0, 255, 0.6); }
+        #particle-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        @keyframes rainbowBorder {
+            0% { border-color: #ff0000; box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); }
+            25% { border-color: #00ff00; box-shadow: 0 0 30px rgba(0, 255, 0, 0.6); }
+            50% { border-color: #00f7ff; box-shadow: 0 0 30px rgba(0, 247, 255, 0.6); }
+            75% { border-color: #8a2be2; box-shadow: 0 0 30px rgba(138, 43, 226, 0.6); }
+            100% { border-color: #ff0000; box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); }
         }
 
         .main-card {
             width: 95%;
-            max-width: 420px;
-            background: rgba(10, 10, 10, 0.95);
-            /* Rainbow Border Applied Here */
-            border: 4px solid #ff0000;
+            max-width: 480px;
+            background: rgba(10, 10, 25, 0.92);
+            border: 4px solid var(--primary);
             border-radius: 25px;
             padding: 30px;
             text-align: center;
             position: relative;
-            animation: rainbowRotate 5s linear infinite;
-            backdrop-filter: blur(10px);
+            animation: rainbowBorder 4s linear infinite;
+            backdrop-filter: blur(15px);
+            z-index: 10;
         }
 
+        .logo-section {
+            width: 90px; height: 90px;
+            margin: -75px auto 15px;
+            background: #000;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            animation: rainbowBorder 4s linear infinite;
+        }
+        .logo-section img { width: 100%; height: 100%; object-fit: cover; }
+
         .owner-badge {
-            background: linear-gradient(90deg, #ff0000, #ff8800, #ff00ff, #ff0000);
-            background-size: 200%;
-            padding: 6px 20px;
+            background: linear-gradient(90deg, #ff0000, #00ff00, #00f7ff, #ff00ff);
+            background-size: 300%;
+            padding: 8px 25px;
             border-radius: 50px;
             display: inline-block;
             font-size: 14px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            animation: moveGradient 3s linear infinite;
+            margin-bottom: 10px;
+            animation: moveGradient 2s linear infinite;
             color: #fff;
         }
 
-        @keyframes moveGradient {
-            0% { background-position: 0%; }
-            100% { background-position: 200%; }
-        }
+        @keyframes moveGradient { 0% { background-position: 0%; } 100% { background-position: 300%; } }
 
-        h2 {
-            font-size: 2.2rem;
-            margin: 5px 0;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
-        }
-
-        .dev-tag {
-            font-size: 12px;
-            color: #00f2ff;
-            text-transform: uppercase;
-            letter-spacing: 4px;
+        .user-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 10px;
+            border-radius: 15px;
             margin-bottom: 20px;
-            display: block;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 11px;
+            text-transform: uppercase;
             font-weight: bold;
         }
+        .info-box span { display: block; color: var(--primary); font-size: 13px; margin-top: 4px; }
 
         .terminal {
-            background: #000;
-            border: 1px solid #222;
-            height: 140px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            height: 130px;
             margin-bottom: 20px;
-            padding: 15px;
+            padding: 12px;
             font-family: 'Courier New', monospace;
-            font-size: 11px;
+            font-size: 10px;
             text-align: left;
-            overflow-y: auto;
-            color: #00ff41;
-            border-radius: 15px;
+            overflow: hidden;
+            color: #00ff88;
+            border-radius: 12px;
         }
 
         .btn-main {
-            width: 100%;
-            padding: 16px;
-            background: transparent;
-            color: #fff;
-            border: 2px solid #fff;
-            border-radius: 15px;
-            font-weight: 900;
-            text-transform: uppercase;
-            transition: 0.3s;
-            cursor: pointer;
-            font-size: 15px;
+            width: 100%; padding: 18px;
+            background: linear-gradient(45deg, #00ff88, #0088cc);
+            color: #fff; border: none; border-radius: 15px;
+            font-weight: 900; text-transform: uppercase;
+            cursor: pointer; transition: 0.3s; font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0,255,136,0.3);
         }
-
-        .btn-main:hover {
-            background: #fff;
-            color: #000;
-            box-shadow: 0 0 20px #fff;
-        }
-
-        /* --- Loading Bar --- */
-        #procBar { display: none; margin: 20px 0; }
-        .loading-text {
-            color: #ffff00;
-            font-weight: bold;
-            letter-spacing: 2px;
-            animation: blink 1s infinite;
-        }
-        @keyframes blink { 50% { opacity: 0.2; } }
+        .btn-main:hover { transform: scale(1.02); box-shadow: 0 0 30px var(--primary); }
 
         .result-box {
-            display: none;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 20px;
-            border: 2px dashed #ff00ff;
-            margin-top: 20px;
-            animation: fadeIn 0.5s;
+            display: none; background: rgba(0,0,0,0.5);
+            padding: 20px; border-radius: 20px;
+            border: 2px dashed var(--primary); margin-top: 20px;
         }
 
         .key-text {
-            font-size: 1.3rem;
-            color: #00ff00;
-            font-weight: bold;
-            display: block;
-            margin: 10px 0;
-            word-break: break-all;
+            font-size: 1.6rem; color: #fff;
+            display: block; margin: 15px 0; padding: 15px;
+            background: rgba(255,255,255,0.05); border-radius: 10px;
+            text-shadow: 0 0 10px var(--primary); border: 1px solid var(--primary);
         }
 
-        .social-grid {
-            display: flex;
-            gap: 10px;
-            margin-top: 25px;
-        }
-
-        .social-btn {
-            flex: 1;
-            padding: 12px;
-            border-radius: 10px;
-            border: 2px solid;
-            background: transparent;
-            color: #fff;
-            font-weight: bold;
-            font-size: 11px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .tg-btn { border-color: #0088cc; color: #0088cc; }
-        .tg-btn:hover { background: #0088cc; color: #fff; }
-        .yt-btn { border-color: #ff0000; color: #ff0000; }
-        .yt-btn:hover { background: #ff0000; color: #fff; }
-
-        .footer {
-            margin-top: 20px;
-            font-size: 10px;
-            color: #555;
-        }
+        .social-grid { display: flex; gap: 10px; margin-top: 20px; }
+        .social-btn { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid #fff; background: transparent; color: #fff; font-size: 10px; cursor: pointer; }
     </style>
 </head>
 <body>
 
+    <canvas id="particle-canvas"></canvas>
+
     <div class="main-card">
+        <div class="logo-section">
+            <img src="https://via.placeholder.com/100" alt="LOGO">
+        </div>
+
         <div class="owner-badge">OWNER: ANAND 😈</div>
-        
-        <h2>HEX CORE OFC</h2>
-        <span class="dev-tag">Developed by Suraj</span>
+        <h2 style="margin:5px 0; letter-spacing: 1px;">HEX CORE VIP</h2>
+
+        <div class="user-info">
+            <div class="info-box">LIVE<span id="onlineCount">1,000+</span></div>
+            <div class="info-box">USER<span>10 MILLION+</span></div>
+            <div class="info-box">PING<span id="pingVal">-- ms</span></div>
+        </div>
 
         <div class="terminal" id="term">
-            [+] System Ready...<br>
-            [+] Coded by Suraj...<br>
-            [+] Secure Channel: Active
+            <div id="term-content">
+                [+] System Initialized...<br>
+                [+] Data packets ready...
+            </div>
         </div>
 
         <div id="action-area">
             <button class="btn-main" onclick="startFlow()">GENERATE ACCESS KEY</button>
         </div>
 
-        <div id="procBar">
-            <div class="loading-text">BYPASSING SECURITY... <span id="timer">30</span>s</div>
+        <div id="procBar" style="display:none; margin:20px 0;">
+            <div style="color:var(--accent); font-weight:bold; font-size: 14px;">BYPASSING SECURITY: <span id="timer">30</span>s</div>
+            <div style="width:100%; height:10px; background:#111; border-radius:10px; margin-top:10px; overflow:hidden;">
+                <div id="pBar" style="width:0%; height:100%; background:linear-gradient(90deg, #ff00ff, #00ff88); transition:1s linear;"></div>
+            </div>
         </div>
 
         <div id="result-area" class="result-box">
-            <span style="font-size: 11px; color: #aaa;">DECRYPTED SUCCESS:</span>
+            <span style="font-size:12px; color:#aaa;">VIP KEY UNLOCKED:</span>
             <span class="key-text" id="keyOutput">...</span>
-            <button class="btn-main" style="border-color:#00ff00; color:#00ff00;" onclick="copyKey()">COPY KEY</button>
+            <button class="btn-main" onclick="copyKey()">COPY KEY</button>
         </div>
 
         <div class="social-grid">
-            <button class="social-btn tg-btn" onclick="window.open('https://t.me/+4N0Gp0aCxIs3MjZl')">TELEGRAM</button>
-            <button class="social-btn yt-btn" onclick="window.open('https://youtube.com/@akbhexcoreofc1')">YOUTUBE</button>
-        </div>
-
-        <div class="footer">
-            POWERED BY ANAND & SURAJ
+            <button class="social-btn" style="border-color:#0088cc;" onclick="window.open('https://t.me/+4N0Gp0aCxIs3MjZl')">TELEGRAM</button>
+            <button class="social-btn" style="border-color:#ff0000;" onclick="window.open('https://youtube.com/@akbhexcoreofc1')">YOUTUBE</button>
         </div>
     </div>
 
     <script>
-        const myEarnLink = "https://earnlinks.in/A8Zqu";
-        const keyList = [
-            "vs18ff-168-om0a4", "vs18ff-168-uY0kH", "vs18ff-168-4EX9d",
-            "vs18ff-168-nwKQ0", "vs18ff-168-nyglY", "vs18ff-168-nlqPI",
-            "vs18ff-168-qKGSM", "vs18ff-168-7fScQ", "vs18ff-168-ocqfx",
-            "vs18ff-168-16w8W"
-        ];
+        const myShortLink = "https://earnlinks.in/A8Zqu";
+        const keys = ["HEX-VIP-9922", "CORE-X07", "GOLD-881", "ANAND-VIP-2026"];
 
-        window.onload = function() {
+        window.onload = () => {
             if(window.location.hash === "#verify-complete") {
-                showFinalKey();
+                document.getElementById('action-area').style.display = 'none';
+                document.getElementById('result-area').style.display = 'block';
+                document.getElementById('keyOutput').innerText = keys[Math.floor(Math.random()*keys.length)];
             }
         };
 
         function addLog(msg) {
-            const term = document.getElementById('term');
-            term.innerHTML += `<br>> ${msg}`;
-            term.scrollTop = term.scrollHeight;
+            const container = document.getElementById('term-content');
+            const line = document.createElement('div');
+            line.innerHTML = `> ${msg}`;
+            container.appendChild(line);
+            if (container.childElementCount > 10) container.removeChild(container.firstChild);
+            document.getElementById('term').scrollTop = document.getElementById('term').scrollHeight;
         }
 
         function startFlow() {
             document.getElementById('action-area').style.display = 'none';
             document.getElementById('procBar').style.display = 'block';
-            
-            let timeLeft = 30;
-            const coding = setInterval(() => {
-                const logs = [
-                    "Suraj's script injecting...", 
-                    "Anand's DB connecting...", 
-                    "Bypassing firewall...", 
-                    "Generating hash...", 
-                    "Tunneling proxy..."
-                ];
-                addLog(logs[Math.floor(Math.random()*logs.length)]);
-            }, 800);
-
+            const hackMsgs = ["Injecting...", "SSL Bypass...", "Fetching DB...", "Proxy Link...", "Hashing...", "DB_Breach...", "SQL_Inject...", "Masking..."];
+            const fastTerm = setInterval(() => addLog(hackMsgs[Math.floor(Math.random() * hackMsgs.length)]), 60);
+            let time = 30;
             const timer = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer').innerText = timeLeft;
-                if(timeLeft <= 0) {
+                time--;
+                document.getElementById('timer').innerText = time;
+                document.getElementById('pBar').style.width = ((30-time)/30 * 100) + "%";
+                if(time <= 0) {
                     clearInterval(timer);
-                    clearInterval(coding);
-                    window.location.href = myEarnLink;
+                    clearInterval(fastTerm);
+                    window.location.href = myShortLink;
                 }
             }, 1000);
         }
 
-        function showFinalKey() {
-            document.getElementById('action-area').style.display = 'none';
-            document.getElementById('procBar').style.display = 'none';
-            document.getElementById('result-area').style.display = 'block';
-            
-            const randomIndex = Math.floor(Math.random() * keyList.length);
-            const selectedKey = keyList[randomIndex];
-            
-            document.getElementById('keyOutput').innerText = selectedKey;
-            addLog("ACCESS GRANTED!");
+        function copyKey() {
+            navigator.clipboard.writeText(document.getElementById('keyOutput').innerText);
+            alert("KEY COPIED!");
         }
 
-        function copyKey() {
-            const text = document.getElementById('keyOutput').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Key Copied: " + text);
-            });
+        // --- ULTRA TAGDI PARTICLES ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let pts = [];
+        let mouse = { x: -1000, y: -1000 };
+
+        window.onmousemove = (e) => { mouse.x = e.x; mouse.y = e.y; };
+        window.onresize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+        window.onresize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.s = Math.random() * 2 + 1;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.hue = Math.random() * 360;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                this.hue += 1;
+                let dx = mouse.x - this.x; let dy = mouse.y - this.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                if(dist < 100) { this.x -= dx * 0.05; this.y -= dy * 0.05; }
+                if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.s, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, 0.8)`;
+                ctx.fill();
+            }
         }
+
+        for(let i=0; i<80; i++) pts.push(new Particle());
+
+        function animate() {
+            ctx.fillStyle = "rgba(3, 3, 11, 0.2)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            pts.forEach((p, i) => {
+                p.update(); p.draw();
+                for(let j=i+1; j<pts.length; j++) {
+                    let dx = p.x - pts[j].x; let dy = p.y - pts[j].y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if(dist < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `hsla(${p.hue}, 100%, 50%, ${1 - dist/100})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p.x, p.y); ctx.lineTo(pts[j].x, pts[j].y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Updated Dynamic Counters (Live always > 1k)
+        setInterval(() => { 
+            document.getElementById('onlineCount').innerText = (1000 + Math.floor(Math.random()*500)).toLocaleString() + "+";
+            document.getElementById('pingVal').innerText = 15 + Math.floor(Math.random()*30) + " ms";
+        }, 2000);
     </script>
 </body>
 </html>
